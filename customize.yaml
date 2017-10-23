@@ -1,0 +1,44 @@
+sensor.basement_window_sensor_access_control:
+  hidden: true
+sensor.basement_window_sensor_alarm_level:
+  hidden: true
+sensor.basement_window_sensor_alarm_type:
+  hidden: true
+sensor.basement_window_sensor_burglar:
+  hidden: true
+sensor.basement_window_sensor_power_management:
+  hidden: true
+sensor.basement_window_sensor_sourcenodeid:
+  hidden: true
+sensor.front_room_left_window_access_control:
+  hidden: true
+sensor.front_room_left_window_alarm_level:
+  hidden: true
+sensor.front_room_left_window_alarm_type:
+  hidden: true
+sensor.front_room_left_window_burglar:
+  hidden: true
+sensor.front_room_left_window_power_management:
+  hidden: true
+sensor.front_room_left_window_sourcenodeid:
+  hidden: true
+sensor.front_room_right_window_access_control:
+  hidden: true
+sensor.front_room_right_window_alarm_level:
+  hidden: true
+sensor.front_room_right_window_alarm_type:
+  hidden: true
+sensor.front_room_right_window_burglar:
+  hidden: true
+sensor.front_room_right_window_power_management:
+  hidden: true
+sensor.front_room_right_window_sourcenodeid:
+  hidden: true
+binary_sensor.basement_window_sensor_sensor:
+  device_class: opening
+binary_sensor.front_room_left_window_sensor:
+  device_class: opening
+binary_sensor.front_room_right_window_sensor:
+  device_class: opening
+binary_sensor.flood_sensor_water_main_sensor:
+  device_class: moisture

@@ -1,0 +1,172 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: !secret name
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Chicago
+
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: !secret http_password
+  ssl_certificate: !secret https_ssl_certificate
+  ssl_key: !secret https_ssl_key
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: !secret duck_baseurl
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+joaoapps_join:
+  - name: klint_op3
+    device_id: group.android
+    api_key: !secret klint_join_api_key
+#  - name: katie_op5
+#    device_id: group.android
+#    api_key: !secret katie_join_api_key
+
+notify:
+  - platform: joaoapps_join
+    name: klint_phone
+    device_id: !secret klint_join_op3_device_id
+    api_key: !secret klint_join_api_key
+  - platform: joaoapps_join
+    name: klint_gaming_pc
+    device_id: !secret klint_join_gaming_pc_device_id
+    api_key: !secret klint_join_api_key
+
+#  - platform: joaoapps_join
+#    name: katie_phone
+#    device_id: !secret katie_join_op5_device_id
+#    api_key: !secret katie_join_api_key
+
+# Weather prediction
+sensor:
+  - platform: darksky
+    api_key: !secret darksky_api
+    update_interval: '00:05'
+    monitored_conditions:
+      - summary
+      - temperature
+#      - icon
+#      - nearest_storm_distance
+#      - precip_type
+#      - precip_intensity
+#      - precip_probability
+#      - temperature_max 
+#      - temperature_min
+#      - cloud_cover
+  - platform: command_line
+    name: SSL cert expiry
+    unit_of_measurement: days
+    scan_interval: 10800
+    command: !secret ssl_check_command
+# Text to speech
+tts:
+  - platform: google
+
+# Shell Commands
+shell_command: 
+  renew_ssl: ~/certbot/certbot-auto renew --quiet --no-self-upgrade --standalone --preferred-challenges http-01
+
+# Scripts
+script:
+  garage_door_alarm:
+    alias: "Garage door alarm"
+    sequence:
+      - delay:
+          minutes: 10
+      - service: notify.klint_phone
+        data:
+          message: 'The garage door is still open'
+          data:
+            icon: 'https://goo.gl/xeetdy'
+  basement_water_alarm:
+    alias: "Basement water alarm"
+    sequence:
+      - delay:
+          minutes: 2
+      - service: notify.klint_phone
+        data:
+          message: 'Water detected in the basement!'
+          data:
+            icon: 'https://goo.gl/xeetdy'
+
+group: !include groups.yaml
+automation: !include automations.yaml
+
+# At home detection
+device_tracker:
+  - platform: asuswrt
+    host: 192.168.50.1
+    username: !secret asuswrt_username
+    port: !secret asuswrt_port
+    ssh_key: /home/homeassistant/.ssh/id_rsa
+    interval_seconds: 15
+    consider_home: 180
+    track_new_devices: false
+
+# Z-Wave stuff
+zwave:
+  usb_path: /dev/zwave
+  polling_interval: 60000
+
+# MQTT Stuff
+mqtt:
+  broker: !secret cloudmqtt_hass-pi_host
+  port: 20702
+  username: !secret cloudmqtt_hass-pi_username
+  password: !secret cloudmqtt_hass-pi_password
+
+#hello_mqtt:
+#  topic: home-assistant/test/hello
+
+cover:
+  - platform: mqtt
+    state_topic: "home-assistant/doors/garage-overhead"
+    command_topic: "home-assistant/doors/garage-overhead/set"
+    name: "Overhead Garage Door"
+    qos: 0
+#    retain: true
+    payload_open: "1"
+    payload_close: "0"
+    payload_stop: "2"
+    state_open: "1"
+    state_closed: "0"

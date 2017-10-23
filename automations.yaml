@@ -1,0 +1,95 @@
+## Automation
+
+- alias: Turn on pole light when sun sets
+  initial_state: True
+  hide_entity: False
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-01:00:00"
+  action:
+    service: light.turn_on
+    data:
+      entity_id: light.front_pole_light_level
+      brightness_pct: 40
+
+- alias: Turn off pole light when sun rises
+  initial_state: True
+  hide_entity: False
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: "+01:00:00"
+  action:
+    service: light.turn_off
+    entity_id: light.front_pole_light_level
+
+- alias: 'Auto Renew SSL Cert'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.ssl_cert_expiry
+    below: 29
+  action:
+    service: shell_command.renew_ssl
+
+- alias: 'Failed to Auto Renew SSL Cert'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.ssl_cert_expiry
+    below: 24
+  action:
+    service: notify.klint_phone
+    data:
+      message: 'SSL Cert failed to auto renew.'
+      data:
+        icon: 'https://goo.gl/xeetdy'
+
+- alias: 'Turn off straightener after 1 hour'
+  trigger: 
+    platform: state
+    entity_id: switch.straightener_relay_switch
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 1
+  action: 
+    service: switch.turn_off
+    entity_id: switch.straightener_relay_switch
+
+- alias: 'Garage Door Still Open'
+  trigger:
+    platform: state
+    entity_id: cover.overhead_garage_door
+    from: 'closed'
+    to: 'open'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.garage_door_alarm
+
+- alias: 'Clear Garage Door Still Open' 
+  trigger:
+    platform: state
+    entity_id: cover.overhead_garage_door
+    to: 'closed'
+  action:
+    service: homeassistant.turn_off
+    entity_id: script.garage_door_alarm
+
+- alias: 'Water In Basement'
+  trigger:
+    platform: state
+    entity_id: zwave.flood_sensor_water_main
+    from: 'off'
+    to: 'on'
+  action:
+    service: homeassistant.turn_on
+    entity_id: script.basement_water_alarm
+
+- alias: 'Clear Water In Basement'
+  trigger:
+    platform: state
+    entity_id: zwave.flood_sensor_water_main
+    to: 'off'
+  action:
+    service: homeassistant.turn_off
+    entity_id: script.basement_water_alarm
