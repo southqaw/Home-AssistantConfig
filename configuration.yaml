@@ -170,3 +170,56 @@ cover:
     payload_stop: "2"
     state_open: "1"
     state_closed: "0"
+ 
+# Alarm
+envisalink:
+  host: !secret envisalink_ip
+  panel_type: DSC
+  user_name: !secret envisalink_username
+  password: !secret envisalink_password
+  code: !secret envisalink_code
+  port: !secret envisalink_port
+  evl_version: 4
+  keepalive_interval: 60
+  zonedump_interval: 30
+  panic_type: Police
+  zones:
+    1:
+      name: 'Smoke: Basement'
+      type: 'smoke'
+    2:
+      name: 'Smoke: Upstairs'
+      type: 'smoke'
+    3:
+      name: 'Carbon Monoxide: Upstairs'
+      type: 'gas'
+    4:
+      name: 'Door: Garage Entry'
+      type: 'opening'
+    5:
+      name: 'Door: Basement Patio'
+      type: 'opening'
+    6:
+      name: 'Motion: Basement'
+      type: 'motion'
+    7:
+      name: 'Motion: Upstairs'
+      type: 'motion'
+    8:
+      name: 'Door: Front'
+      type: 'opening'
+    9:
+      name: 'Window: Guest Left '
+      type: 'opening'
+    10:
+      name: 'Window: Guest Right '
+      type: 'opening'
+    11:
+      name: 'Window: Office Left'
+      type: 'opening'
+    12:
+      name: 'Window: Office Right'
+      type: 'opening'
+  partitions:
+    1:
+      name: 'Home Alarm'

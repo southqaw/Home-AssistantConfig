@@ -1,44 +1,44 @@
-sensor.basement_window_sensor_access_control:
+sensor.window_basement_access_control:
   hidden: true
-sensor.basement_window_sensor_alarm_level:
+sensor.window_basement_alarm_level:
   hidden: true
-sensor.basement_window_sensor_alarm_type:
+sensor.window_basement_alarm_type:
   hidden: true
-sensor.basement_window_sensor_burglar:
+sensor.window_basement_burglar:
   hidden: true
-sensor.basement_window_sensor_power_management:
+sensor.window_basement_power_management:
   hidden: true
-sensor.basement_window_sensor_sourcenodeid:
+sensor.window_basement_sourcenodeid:
   hidden: true
-sensor.front_room_left_window_access_control:
+sensor.window_front_left_access_control:
   hidden: true
-sensor.front_room_left_window_alarm_level:
+sensor.window_front_left_alarm_level:
   hidden: true
-sensor.front_room_left_window_alarm_type:
+sensor.window_front_left_alarm_type:
   hidden: true
-sensor.front_room_left_window_burglar:
+sensor.window_front_left_burglar:
   hidden: true
-sensor.front_room_left_window_power_management:
+sensor.window_front_left_power_management:
   hidden: true
-sensor.front_room_left_window_sourcenodeid:
+sensor.window_front_left_sourcenodeid:
   hidden: true
-sensor.front_room_right_window_access_control:
+sensor.window_front_right_access_control:
   hidden: true
-sensor.front_room_right_window_alarm_level:
+sensor.window_front_right_alarm_level:
   hidden: true
-sensor.front_room_right_window_alarm_type:
+sensor.window_front_right_alarm_type:
   hidden: true
-sensor.front_room_right_window_burglar:
+sensor.window_front_right_burglar:
   hidden: true
-sensor.front_room_right_window_power_management:
+sensor.window_front_right_power_management:
   hidden: true
-sensor.front_room_right_window_sourcenodeid:
+sensor.window_front_right_sourcenodeid:
   hidden: true
-binary_sensor.basement_window_sensor_sensor:
+binary_sensor.window_basement_sensor:
   device_class: opening
-binary_sensor.front_room_left_window_sensor:
+binary_sensor.window_front_left_sensor:
   device_class: opening
-binary_sensor.front_room_right_window_sensor:
+binary_sensor.window_front_right_sensor:
   device_class: opening
 binary_sensor.flood_sensor_water_main_sensor:
   device_class: moisture
