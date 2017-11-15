@@ -1,0 +1,94 @@
+default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+      - group.all_covers
+      - group.people
+      - group.all_lights
+      - group.all_switches
+      - sensor.ssl_cert_expiry
+      - alarm_control_panel.home_alarm
+      - binary_sensor.flood_sensor_water_main_sensor
+      - sun.sun
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_temperature
+
+alarm:
+    name: Alarm
+    view: yes
+    entities:
+      - alarm_control_panel.home_alarm
+      - sensor.home_alarm_keypad
+      - group.alarm_door
+      - group.alarm_window
+      - group.alarm_motion
+      - group.alarm_gas
+
+alarm_door:
+    name: Door Sensors
+    view: no
+    entities:
+      - binary_sensor.door_basement_patio
+      - binary_sensor.door_front
+      - binary_sensor.door_garage_entry
+
+alarm_window:
+    name: Window Sensors
+    view: no
+    entities:
+      - binary_sensor.window_basement_sensor
+      - binary_sensor.window_front_left_sensor
+      - binary_sensor.window_front_right_sensor
+      - binary_sensor.window_guest_left_
+      - binary_sensor.window_guest_right_
+      - binary_sensor.window_office_left
+      - binary_sensor.window_office_right
+
+alarm_motion:
+    name: Motion Sensors
+    view: no
+    entities:
+      - binary_sensor.motion_basement
+      - binary_sensor.motion_upstairs
+
+alarm_gas:
+    name: Gas Sensors
+    view: no
+    entities:
+      - binary_sensor.carbon_monoxide_upstairs
+      - binary_sensor.smoke_basement
+      - binary_sensor.smoke_upstairs
+
+media:
+    name: Media
+    view: yes
+    entities:
+      - media_player.basement
+      - media_player.bedroom
+      - media_player.roku_1xk59f094783
+
+zwave:
+    name: ZWave
+    view: yes
+    entities:
+      - zwave.aeotec_zw090_zstick_gen5_us
+      - zwave.flood_sensor_water_main
+      - zwave.front_pole_light
+      - zwave.straightener_relay
+      - zwave.window_basement
+      - zwave.window_front_left
+      - zwave.window_front_right
+
+people:
+    name: Residents
+    view: no
+    entities:
+      - device_tracker.android832f34d810304a42
+      - device_tracker.android74dfa4b8d741c940
+
+automation_view:
+    name: Automation
+    view: yes
+    entities:
+      - group.all_automations
+      - group.all_scripts
