@@ -223,3 +223,12 @@ envisalink:
   partitions:
     1:
       name: 'Home Alarm'
+
+google_assistant:
+    project_id: !secret gass_project_id
+    client_id: !secret gass_client_id
+    access_token: !secret gass_access_token
+    exposed_domains:
+      - switch
+      - light
+      - cover
