@@ -78,6 +78,7 @@ zwave:
       - zwave.window_basement
       - zwave.window_front_left
       - zwave.window_front_right
+      - zwave.front_room_plug
 
 people:
     name: Residents
