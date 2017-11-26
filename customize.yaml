@@ -47,10 +47,17 @@ switch.straightener_relay_switch_3_0:
     google_assistant: true
     google_assistant_type: switch
     google_assistant_name: straightener
+
 light.front_pole_light_level_2_0:
     google_assistant: true
     google_assistant_type: light
     google_assistant_name: front pole light
+
+switch.outdoor_relay_1_switch:
+    friendly_name: Outside Christmas Lights
+    google_assistant: true
+    google_assistant_type: light
+    google_assistant_name: outside christmas lights
 
 group.all_automations:
     friendly_name: Automations

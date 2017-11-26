@@ -79,6 +79,7 @@ zwave:
       - zwave.window_front_left
       - zwave.window_front_right
       - zwave.front_room_plug
+      - zwave.outdoor_relay_1
 
 people:
     name: Residents

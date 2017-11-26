@@ -11,7 +11,7 @@
     service: light.turn_on
     data:
       entity_id: light.front_pole_light_level
-      brightness_pct: 40
+      brightness_pct: 25
 
 - alias: Turn off pole light when sun rises
   initial_state: True
@@ -23,6 +23,27 @@
   action:
     service: light.turn_off
     entity_id: light.front_pole_light_level
+
+- alias: Turn on the christmas lights when sun sets
+  initial_state: True
+  hide_entity: False
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-01:30:00"
+  action:
+    service: switch.turn_on
+    entity_id: switch.outdoor_relay_1_switch
+
+- alias: Turn off the christmas lights at 23:30
+  initial_state: True
+  hide_entity: False
+  trigger:
+    platform: time
+    at: '23:30:00'
+  action:
+    service: switch.turn_off
+    entity_id: switch.outdoor_relay_1_switch
 
 - alias: 'Auto Renew SSL Cert'
   trigger:
