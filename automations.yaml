@@ -33,7 +33,9 @@
     offset: "-01:30:00"
   action:
     service: switch.turn_on
-    entity_id: switch.outdoor_relay_1_switch
+    entity_id:
+      - switch.outdoor_relay_1_switch
+      - switch.indoor_relay_2_switch
 
 - alias: Turn off the christmas lights at 23:30
   initial_state: True
@@ -43,7 +45,9 @@
     at: '23:30:00'
   action:
     service: switch.turn_off
-    entity_id: switch.outdoor_relay_1_switch
+    entity_id:
+      - switch.outdoor_relay_1_switch
+      - switch.indoor_relay_2_switch
 
 - alias: 'Auto Renew SSL Cert'
   trigger:

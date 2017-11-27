@@ -59,6 +59,12 @@ switch.outdoor_relay_1_switch:
     google_assistant_type: light
     google_assistant_name: outside christmas lights
 
+switch.indoor_relay_2_switch:
+    friendly_name: Christmas Tree
+    google_assistant: true
+    google_assistant_type: light
+    google_assistant_name: christmas tree
+
 group.all_automations:
     friendly_name: Automations
     hidden: false
