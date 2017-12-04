@@ -80,6 +80,7 @@ zwave:
       - zwave.window_front_right
       - zwave.front_room_plug
       - zwave.outdoor_relay_1
+      - zwave.indoor_relay_2
 
 people:
     name: Residents

@@ -118,3 +118,55 @@
   action:
     service: homeassistant.turn_off
     entity_id: script.basement_water_alarm
+
+# Alarm Stuff
+
+- alias: 'Trigger alarm while armed away'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.window_front_left_sensor
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.window_front_right_sensor
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.window_basement_sensor
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: 'armed_away'
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.home_alarm
+
+- alias: 'Trigger alarm while armed home'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.window_front_left_sensor
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.window_front_right_sensor
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.window_basement_sensor
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: 'armed_home'
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.home_alarm
+
+- alias: 'Send notification when alarm is triggered'
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      to: 'triggered'
+  action:
+    service: notify.klint_phone
+    data:
+      message: 'ALARM! Home alarm has been triggered!'
+      data:
+        icon: 'https://goo.gl/xeetdy'
