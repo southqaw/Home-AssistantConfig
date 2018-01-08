@@ -63,9 +63,13 @@ media:
     name: Media
     view: yes
     entities:
-      - media_player.basement
-      - media_player.bedroom
+      - media_player.basement_tv
+      - media_player.bedroom_tv
       - media_player.roku_1xk59f094783
+      - media_player.all_speakers
+      - media_player.upstairs
+      - media_player.downstairs
+      - media_player.front_speakers 
 
 zwave:
     name: ZWave
