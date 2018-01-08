@@ -25,7 +25,7 @@
     entity_id: light.front_pole_light_level
 
 - alias: Turn on the christmas lights when sun sets
-  initial_state: True
+  initial_state: 'off'
   hide_entity: False
   trigger:
     platform: sun
@@ -38,7 +38,7 @@
       - switch.indoor_relay_2_switch
 
 - alias: Turn off the christmas lights at 23:30
-  initial_state: True
+  initial_state: 'off'
   hide_entity: False
   trigger:
     platform: time
