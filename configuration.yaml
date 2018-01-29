@@ -98,6 +98,14 @@ sensor:
     unit_of_measurement: days
     scan_interval: 10800
     command: !secret ssl_check_command
+
+  - platform: pi_hole
+    host: localhost
+    location: admin
+    monitored_conditions:
+      - ads_blocked_today
+      - unique_clients
+
 # Text to speech
 tts:
   - platform: google

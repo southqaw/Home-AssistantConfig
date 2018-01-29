@@ -7,6 +7,8 @@ default_view:
       - group.all_lights
       - group.all_switches
       - sensor.ssl_cert_expiry
+      - sensor.pihole_ads_blocked_today
+      - sensor.pihole_dns_unique_clients
       - alarm_control_panel.home_alarm
       - binary_sensor.flood_sensor_water_main_sensor
       - sun.sun
