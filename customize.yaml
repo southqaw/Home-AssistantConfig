@@ -42,44 +42,39 @@ binary_sensor.window_front_right_sensor:
   device_class: opening
 binary_sensor.flood_sensor_water_main_sensor:
   device_class: moisture
-
 switch.straightener_relay_switch_3_0:
-    google_assistant: true
-    google_assistant_type: switch
-    google_assistant_name: straightener
-
+  google_assistant: true
+  google_assistant_type: switch
+  google_assistant_name: straightener
 light.front_pole_light_level_2_0:
-    google_assistant: true
-    google_assistant_type: light
-    google_assistant_name: front pole light
-
+  google_assistant: true
+  google_assistant_type: light
+  google_assistant_name: front pole light
 switch.outdoor_relay_1_switch:
-    friendly_name: Outside Christmas Lights
-    google_assistant: true
-    google_assistant_type: light
-    google_assistant_name: outside christmas lights
-
+  friendly_name: Outside Christmas Lights
+  google_assistant: true
+  google_assistant_type: light
+  google_assistant_name: outside christmas lights
 switch.indoor_relay_2_switch:
-    friendly_name: Christmas Tree
-    google_assistant: true
-    google_assistant_type: light
-    google_assistant_name: christmas tree
-
+  friendly_name: Family room plug switch
+  google_assistant: true
+  google_assistant_name: Family room light
+  google_assistant_type: light
 group.all_automations:
-    friendly_name: Automations
-    hidden: false
+  friendly_name: Automations
+  hidden: false
 group.all_scripts:
-    friendly_name: Scripts
-    hidden: false
+  friendly_name: Scripts
+  hidden: false
 group.all_switches:
-    friendly_name: Switches
-    hidden: false
+  friendly_name: Switches
+  hidden: false
 group.all_lights:
-    friendly_name: Lights
-    hidden: false
+  friendly_name: Lights
+  hidden: false
 group.all_covers:
-    friendly_name: Covers
-    hidden: false
+  friendly_name: Covers
+  hidden: false
 group.all_devices:
-    friendly_name: Devices
-    hidden: false
+  friendly_name: Devices
+  hidden: false
