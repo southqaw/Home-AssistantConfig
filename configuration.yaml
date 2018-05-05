@@ -76,6 +76,11 @@ notify:
 #    name: katie_phone
 #    device_id: !secret katie_join_op5_device_id
 #    api_key: !secret katie_join_api_key
+octoprint:
+  host: 192.168.50.51
+  api_key: !secret octoprint_api
+  bed: true
+  number_of_tools: 1    
 
 # Weather prediction
 sensor:
@@ -105,6 +110,19 @@ sensor:
     monitored_conditions:
       - ads_blocked_today
       - unique_clients
+  
+  - platform: octoprint
+    name: OctoPrint
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
+
+binary_sensor:
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
 
 # Text to speech
 tts:
@@ -242,3 +260,5 @@ google_assistant:
       - switch
       - light
       - cover
+
+

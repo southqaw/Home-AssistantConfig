@@ -24,6 +24,48 @@
     service: light.turn_off
     entity_id: light.front_pole_light_level
 
+- alias: Turn on back porch light when motion, at night
+  initial_state: True
+  hide_entity: False
+  condition:
+    condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: "-01:00:00"
+      - condition: sun
+        before: sunrise
+        before_offset: "01:00:00"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_back_porch_sensor
+    to: 'on'
+  action:
+    service: switch.turn_on
+    entity_id: switch.back_porch_light_switch
+
+- alias: Turn off back porch light 10 minutes after movement
+  initial_state: True
+  hide_entity: False
+  condition:
+    condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: "-01:00:00"
+      - condition: sun
+        before: sunrise
+        before_offset: "01:00:00"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_back_porch_sensor
+    to: 'off'
+    for:
+      minutes: 10
+  action:
+    service: switch.turn_off
+    entity_id: switch.back_porch_light_switch
+
 - alias: Turn on the christmas lights when sun sets
   initial_state: 'off'
   hide_entity: False
@@ -48,6 +90,86 @@
     entity_id:
       - switch.outdoor_relay_1_switch
       - switch.indoor_relay_2_switch
+
+- alias: 'Turn on Family room light when away'
+  initial_state: 'on'
+  hide_entity: False
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.android74dfa4b8d741c940
+        state: 'not home'
+      - condition: state
+        entity_id: device_tracker.android832f34d810304a42
+        state: 'not home'
+  trigger:
+      platform: time
+      at: '16:33:00'
+  action:
+      service: switch.turn_on
+      entity_id:
+       - switch.indoor_relay_2_switch
+
+- alias: 'Turn off Family room light when away'
+  initial_state: 'on'
+  hide_entity: False
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.android74dfa4b8d741c940
+        state: 'not home'
+      - condition: state
+        entity_id: device_tracker.android832f34d810304a42
+        state: 'not home'
+  trigger:
+      platform: time
+      at: '22:07:00'
+  action:
+      service: switch.turn_off
+      entity_id:
+       - switch.indoor_relay_2_switch
+
+- alias: 'Turn on Living room light when away'
+  initial_state: 'on'
+  hide_entity: False
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.android74dfa4b8d741c940
+        state: 'not home'
+      - condition: state
+        entity_id: device_tracker.android832f34d810304a42
+        state: 'not home'
+  trigger:
+      platform: time
+      at: '17:11:00'
+  action:
+      service: switch.turn_on
+      entity_id:
+       - switch.front_room_plug_switch
+
+- alias: 'Turn off Living room light when away'
+  initial_state: 'on'
+  hide_entity: False
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.android74dfa4b8d741c940
+        state: 'not home'
+      - condition: state
+        entity_id: device_tracker.android832f34d810304a42
+        state: 'not home'
+  trigger:
+      platform: time
+      at: '20:56:00'
+  action:
+      service: switch.turn_off
+      entity_id:
+       - switch.front_room_plug_switch
 
 - alias: 'Auto Renew SSL Cert'
   trigger:
@@ -170,3 +292,16 @@
       message: 'ALARM! Home alarm has been triggered!'
       data:
         icon: 'https://goo.gl/xeetdy'
+
+- alias: 'Send notification when 3D print complete'
+  trigger:
+    - platform: state
+      entity_id: sensor.octoprint_current_state
+      from: 'Printing'
+      to: 'Operational'
+  action:
+    service: notify.klint_phone
+    data:
+      message: 'Print Complete!'
+      data:
+          icon: 'https://raw.githubusercontent.com/guysoft/OctoPi/devel/media/OctoPi.png'

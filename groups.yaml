@@ -52,6 +52,7 @@ alarm_motion:
     entities:
       - binary_sensor.motion_basement
       - binary_sensor.motion_upstairs
+      - binary_sensor.motion_back_porch_sensor
 
 alarm_gas:
     name: Gas Sensors
@@ -72,6 +73,21 @@ media:
       - media_player.upstairs
       - media_player.downstairs
       - media_player.front_speakers 
+
+printer:
+    name: 3D Printer
+    view: yes
+    entities:
+      - sensor.3d_printer_energy
+      - sensor.3d_printer_current
+      - sensor.3d_printer_power
+      - sensor.3d_printer_voltage
+      - sensor.octoprint_actual_bed_temp
+      - sensor.octoprint_target_bed_temp
+      - sensor.octoprint_actual_tool0_temp
+      - sensor.octoprint_target_tool0_temp
+      - sensor.octoprint_current_state
+      - sensor.octoprint_job_percentage
 
 zwave:
     name: ZWave

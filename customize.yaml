@@ -42,6 +42,8 @@ binary_sensor.window_front_right_sensor:
   device_class: opening
 binary_sensor.flood_sensor_water_main_sensor:
   device_class: moisture
+binary_sensor.motion_back_porch_sensor:
+  device_class: motion
 switch.straightener_relay_switch_3_0:
   google_assistant: true
   google_assistant_type: switch
@@ -60,6 +62,9 @@ switch.indoor_relay_2_switch:
   google_assistant: true
   google_assistant_name: Family room light
   google_assistant_type: light
+switch.3d_printer_switch:
+  google_assistant: false
+  hidden: true
 group.all_automations:
   friendly_name: Automations
   hidden: false
